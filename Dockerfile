@@ -7,6 +7,7 @@ RUN apt-get -qq update
 RUN apt-get -qq upgrade
 
 # Install development tools
+ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get -qqy install git gcc make
 RUN apt-get -qqy install automake autoconf libtool autotools-dev
 
