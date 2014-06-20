@@ -9,8 +9,10 @@ RUN apt-get -qq upgrade
 # Install development tools
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get -qqy install git gcc make
-RUN apt-get -qqy install automake autoconf libtool autotools-dev
+RUN apt-get -qqy install automake autoconf libtool
 
-# Download and build
+# Download
 RUN git clone https://git.xiph.org/opus.git
-RUN cd opus && ./autogen.sh && ./configure && make -j4 check
+
+# Now update and build whenever the image is launched
+CMD cd opus && git pull && ./autogen.sh && ./configure && make -j4 check
